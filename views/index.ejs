@@ -1,0 +1,107 @@
+<%- include("partials/head.ejs") %>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .bt {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .bt button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(90deg, #4CAF50, #2E8B57);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .bt button:hover {
+    background: linear-gradient(90deg, #3CB371, #228B22);
+    transform: translateY(-2px);
+  }
+
+  .outer_box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .box {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .box h1 {
+    font-size: 1.5rem;
+    color: #4CAF50;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 5px;
+  }
+
+  .box p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  @media (max-width: 768px) {
+    .bt button {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+    }
+
+    .box h1 {
+      font-size: 1.3rem;
+    }
+
+    .box p {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<div class="container">
+  <form action="/createPost">
+    <div class="bt">
+      <button>Add Post</button>
+    </div>
+  </form>
+
+  <div class="outer_box">
+    <% blogs.forEach(element => { %>
+      <div class="box">
+        <h1><%= element.heading %></h1>
+        <p><%= element.body %></p>
+      </div>
+    <% }); %>
+  </div>
+</div>
+
+<%- include("partials/foot.ejs") %>
